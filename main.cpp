@@ -1,14 +1,8 @@
 ﻿#include "qrcode.h"
-#include <QGuiApplication>
-#include <QQmlApplicationEngine>
 #include <QDebug>
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-
-    QGuiApplication app(argc, argv);
-
     // Create the QR code
     QRCode qrcode;
     uint8_t qrcodeData[qrcode_getBufferSize(3)];
@@ -26,13 +20,7 @@ int main(int argc, char *argv[])
         result.append(QString("\r\n"));
     }
 
-//    qDebug()<<result;
-    qDebug()<<"1234\r\n234";
     qDebug().noquote()<<result;
-    QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-    if (engine.rootObjects().isEmpty())
-        return -1;
 
-    return app.exec();
+    return 0;
 }
